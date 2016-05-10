@@ -196,7 +196,7 @@ public class GBEntryBook {
 
         for (int i = staffSheet.getPhysicalNumberOfRows() - 1; i > 0; i--) {
             Row r = staffSheet.getRow(i);
-            if (isRowEmpty(r, 3) || isRowSafe(r, new int[]{0, 1, 2})) continue;
+            if (isRowEmpty(r, 3) || !isRowSafe(r, new int[]{0, 1, 2})) continue;
 
             DateTime startOfToday = DateTime.now().withTimeAtStartOfDay();
 
@@ -220,7 +220,7 @@ public class GBEntryBook {
 
         for (int i = substituteSheet.getPhysicalNumberOfRows() - 1; i > 0; i--) {
             Row r = substituteSheet.getRow(i);
-            if (isRowEmpty(r, 6) || isRowSafe(r, new int[]{0, 1, 2, 3, 4, 5})) continue;
+            if (isRowEmpty(r, 6) || !isRowSafe(r, new int[]{0, 1, 2, 3, 4, 5})) continue;
             DateTime startOfToday = DateTime.now().withTimeAtStartOfDay();
 
             DateTime entryTime = DateTimeFormat.forPattern("MMM d yyyy HH:mm:ss").parseDateTime(r.getCell(6).getStringCellValue().replaceAll("(\\d{1,2})(?:st|nd|rd|th)", "$1"));
